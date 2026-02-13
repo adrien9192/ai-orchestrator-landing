@@ -11,12 +11,40 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: Intégrer ConvertKit API ici
-    // Pour l'instant, on log juste l'email
-    console.log("New signup:", email);
+    const apiKey = process.env.CONVERTKIT_API_KEY;
+    
+    if (!apiKey) {
+      console.error("ConvertKit API key missing");
+      return NextResponse.json(
+        { error: "Configuration error" },
+        { status: 500 }
+      );
+    }
 
-    // Simuler un délai
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Add subscriber using ConvertKit API v4
+    const response = await fetch("https://api.kit.com/v4/subscribers", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email_address: email,
+        tags: ["ai-orchestrator-waitlist"]
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("ConvertKit API error:", errorData);
+      return NextResponse.json(
+        { error: "Failed to subscribe" },
+        { status: 500 }
+      );
+    }
+
+    const data = await response.json();
+    console.log("Subscriber added:", email, data);
 
     return NextResponse.json({ success: true });
   } catch (error) {

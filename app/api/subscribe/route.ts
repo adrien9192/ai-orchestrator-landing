@@ -11,9 +11,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiSecret = process.env.CONVERTKIT_API_SECRET;
+    const apiKey = process.env.CONVERTKIT_API_SECRET;
     
-    if (!apiSecret) {
+    if (!apiKey) {
       console.error("ConvertKit API secret missing");
       return NextResponse.json(
         { error: "Configuration error" },
@@ -21,30 +21,39 @@ export async function POST(request: Request) {
       );
     }
 
-    // Add subscriber using ConvertKit API v3
-    const response = await fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${apiSecret}`, {
+    // Use ConvertKit API v3 with public API key to add subscriber
+    // No form needed - just add to main subscribers list
+    const url = `https://api.convertkit.com/v3/subscribers`;
+    
+    const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email
+        api_key: apiKey,
+        email: email,
+        first_name: "",
+        fields: {
+          source: "ai-orchestrator-landing"
+        }
       }),
     });
 
     const data = await response.json();
 
-    if (!response.ok) {
-      console.error("ConvertKit API error:", response.status, data);
-      return NextResponse.json(
-        { error: "Failed to subscribe" },
-        { status: 500 }
-      );
+    // ConvertKit returns 200 even if subscriber already exists
+    if (response.ok || response.status === 200) {
+      console.log("Subscriber added/updated:", email, data);
+      return NextResponse.json({ success: true });
     }
 
-    console.log("Subscriber added:", email, data);
+    console.error("ConvertKit API error:", response.status, data);
+    return NextResponse.json(
+      { error: "Failed to subscribe" },
+      { status: 500 }
+    );
 
-    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Subscribe error:", error);
     return NextResponse.json(

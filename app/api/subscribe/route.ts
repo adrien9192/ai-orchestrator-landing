@@ -12,9 +12,9 @@ export async function POST(request: Request) {
     }
 
     const formId = process.env.CONVERTKIT_FORM_ID;
-    const apiSecret = process.env.CONVERTKIT_API_SECRET;
+    const apiKey = process.env.CONVERTKIT_API_KEY;
     
-    if (!formId || !apiSecret) {
+    if (!formId || !apiKey) {
       console.error("ConvertKit config missing");
       return NextResponse.json(
         { error: "Configuration error" },
@@ -22,14 +22,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Subscribe to ConvertKit form
+    // Subscribe using public API key (for form subscriptions)
     const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        api_secret: apiSecret,
+        api_key: apiKey,
         email: email
       }),
     });

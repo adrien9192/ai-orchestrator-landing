@@ -11,36 +11,39 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.CONVERTKIT_API_KEY;
+    const apiSecret = process.env.CONVERTKIT_API_SECRET;
     
-    if (!apiKey) {
-      console.error("ConvertKit API key missing");
+    if (!apiSecret) {
+      console.error("ConvertKit API secret missing");
       return NextResponse.json(
         { error: "Configuration error" },
         { status: 500 }
       );
     }
 
-    // Add subscriber using ConvertKit API v4
-    const response = await fetch("https://api.kit.com/v4/subscribers", {
+    // Add subscriber using ConvertKit API v3
+    const response = await fetch(`https://api.convertkit.com/v3/subscribers?api_secret=${apiSecret}`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email_address: email,
-        tags: ["ai-orchestrator-waitlist"]
+        email: email,
+        tags: [7257820] // Tag ID for "ai-orchestrator-waitlist" - will be created if doesn't exist
       }),
     });
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error("ConvertKit API error:", errorData);
-      return NextResponse.json(
-        { error: "Failed to subscribe" },
-        { status: 500 }
-      );
+      console.error("ConvertKit API error:", response.status, errorData);
+      
+      // Even if tagging fails, subscriber might be added
+      if (response.status !== 200 && response.status !== 201) {
+        return NextResponse.json(
+          { error: "Failed to subscribe" },
+          { status: 500 }
+        );
+      }
     }
 
     const data = await response.json();

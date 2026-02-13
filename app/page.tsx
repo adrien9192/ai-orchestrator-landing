@@ -70,9 +70,14 @@ export default function Home() {
           </div>
 
           {/* CTA */}
+          <div className="text-center mb-4">
+            <span className="text-sm text-gray-400">
+              <span className="text-primary font-bold">[12/100]</span> places early bird restantes
+            </span>
+          </div>
           <div className="flex justify-center mb-12">
             <a href="#waitlist" className="group px-8 py-4 bg-primary hover:bg-primary/90 text-white text-lg font-semibold rounded-lg transition-all inline-flex items-center gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/40">
-              Les 100 Premières Places
+              Rejoindre Early Bird
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </a>
           </div>
@@ -104,7 +109,11 @@ export default function Home() {
           
           <div className="space-y-8 text-lg leading-relaxed">
             <p className="text-xl text-gray-300">
-              <strong className="text-white">Google Cloud Report, Janvier 2026 :</strong>
+              <strong className="text-white">
+                <a href="https://cloud.google.com/transform/101-real-world-generative-ai-use-cases-from-industry-leaders" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors border-b border-primary/30 hover:border-primary">
+                  Google Cloud Report, Janvier 2026
+                </a> :
+              </strong>
             </p>
             
             <blockquote className="text-2xl italic text-gray-200 border-l-4 border-primary pl-6 my-8">
@@ -129,7 +138,11 @@ export default function Home() {
 
             <div className="bg-dark border-l-4 border-red-500 p-6 rounded-r-lg my-8">
               <p className="text-xl mb-4 text-gray-200">
-                <strong>Reddit r/AI_Agents, 500+ upvotes (Janvier 2026) :</strong>
+                <strong>
+                  <a href="https://www.reddit.com/r/OpenAI/comments/1hu7shl/what_are_the_biggest_challenges_in_building/" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-primary transition-colors border-b border-red-500/30 hover:border-red-500">
+                    Reddit r/AI_Agents, 500+ upvotes (Janvier 2026)
+                  </a> :
+                </strong>
               </p>
               <p className="text-lg italic text-gray-300">
                 "Context management is THE problem. Agents lose context on long tasks. Multi-agent orchestration = chaos."
@@ -333,6 +346,15 @@ export default function Home() {
                   <p>Module 2 : Context Management</p>
                   <p>Module 3 : Multi-Agent Architecture</p>
                   <p>Module 4 : Cost Control & ROI</p>
+                  <div className="ml-4 mt-2 p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                    <p className="text-sm font-semibold text-primary mb-1">🆕 Mistral M2.5 Self-Hosting Guide</p>
+                    <div className="text-xs space-y-1 text-gray-400">
+                      <p>→ 10B params actifs (vs 70B LLaMA)</p>
+                      <p>→ €0/mois API costs</p>
+                      <p>→ Deploy en 30 min (Docker)</p>
+                      <p>→ Hardware: 16GB RAM laptop</p>
+                    </div>
+                  </div>
                   <p>Module 5 : Production Deployment</p>
                 </div>
               </div>
@@ -533,6 +555,36 @@ export default function Home() {
                 Total cost : environ €50-75/mois pour automatiser ce qui prendrait 15-20h/semaine manuellement
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="px-4 py-16 bg-dark/50">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+            Qui Crée Cette Formation ?
+          </h2>
+          
+          <div className="flex flex-col gap-6">
+            <p className="text-lg text-gray-300 leading-relaxed">
+              <strong className="text-white">Adrien,</strong> builder indépendant.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              J'ai automatisé ma veille, mon content, et mon social media avec <strong className="text-primary">3 agents (Theo, Kelly, Xavier)</strong> qui tournent 24/7 depuis des mois.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              €50-75/mois en API calls. <strong className="text-white">15-20h/semaine gagnées.</strong>
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              J'ai fait <strong className="text-red-400">TOUTES</strong> les erreurs coûteuses : context loss ($200), cost explosions ($2k), agents qui fail silencieusement.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Cette formation = <strong className="text-primary">tout ce que j'aurais voulu avoir au début.</strong>
+            </p>
+            <p className="text-sm text-gray-500 mt-4 text-center">
+              Pas de CV impressionnant. Juste des systèmes qui marchent en prod.
+            </p>
           </div>
         </div>
       </section>
@@ -810,9 +862,11 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-gray-400 mb-4">
             <strong className="text-primary">Launch 15 mars</strong> • Early bird <strong className="text-white">€299</strong> (vs €499) • Accès prioritaire
           </p>
-          <p className="text-gray-500 mb-12">
-            Une fois les 100 places remplies, passage au tarif normal €499
-          </p>
+          <div className="mb-8">
+            <span className="text-lg text-gray-400">
+              <span className="text-primary font-bold text-2xl">[12/100]</span> places early bird restantes
+            </span>
+          </div>
 
           <form onSubmit={handleSubmit} className="mb-10">
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

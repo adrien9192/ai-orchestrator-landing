@@ -28,25 +28,20 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        tags: [7257820] // Tag ID for "ai-orchestrator-waitlist" - will be created if doesn't exist
+        email: email
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      const errorData = await response.text();
-      console.error("ConvertKit API error:", response.status, errorData);
-      
-      // Even if tagging fails, subscriber might be added
-      if (response.status !== 200 && response.status !== 201) {
-        return NextResponse.json(
-          { error: "Failed to subscribe" },
-          { status: 500 }
-        );
-      }
+      console.error("ConvertKit API error:", response.status, data);
+      return NextResponse.json(
+        { error: "Failed to subscribe" },
+        { status: 500 }
+      );
     }
 
-    const data = await response.json();
     console.log("Subscriber added:", email, data);
 
     return NextResponse.json({ success: true });

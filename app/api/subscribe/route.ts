@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import { writeFile, readFile, mkdir } from "fs/promises";
+import { join } from "path";
+
+const SIGNUPS_DIR = "/tmp/signups";
+const SIGNUPS_FILE = join(SIGNUPS_DIR, "emails.jsonl");
 
 export async function POST(request: Request) {
   try {
@@ -11,54 +16,52 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.CONVERTKIT_API_SECRET;
-    
-    if (!apiKey) {
-      console.error("ConvertKit API secret missing");
-      return NextResponse.json(
-        { error: "Configuration error" },
-        { status: 500 }
-      );
-    }
+    // Store email locally
+    try {
+      await mkdir(SIGNUPS_DIR, { recursive: true });
+    } catch {}
 
-    // Use ConvertKit API v3 with public API key to add subscriber
-    // No form needed - just add to main subscribers list
-    const url = `https://api.convertkit.com/v3/subscribers`;
-    
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        api_key: apiKey,
-        email: email,
-        first_name: "",
-        fields: {
-          source: "ai-orchestrator-landing"
-        }
-      }),
-    });
+    const signup = {
+      email,
+      timestamp: new Date().toISOString(),
+      source: "landing-page"
+    };
 
-    const data = await response.json();
-
-    // ConvertKit returns 200 even if subscriber already exists
-    if (response.ok || response.status === 200) {
-      console.log("Subscriber added/updated:", email, data);
-      return NextResponse.json({ success: true });
-    }
-
-    console.error("ConvertKit API error:", response.status, data);
-    return NextResponse.json(
-      { error: "Failed to subscribe" },
-      { status: 500 }
+    await writeFile(
+      SIGNUPS_FILE,
+      JSON.stringify(signup) + "\n",
+      { flag: "a" }
     );
 
+    console.log("Email stored:", email);
+
+    // TODO: Sync to ConvertKit later with proper form ID
+    
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Subscribe error:", error);
     return NextResponse.json(
       { error: "Erreur serveur" },
       { status: 500 }
     );
+  }
+}
+
+// GET endpoint to export signups (for admin)
+export async function GET() {
+  try {
+    const content = await readFile(SIGNUPS_FILE, "utf-8");
+    const signups = content
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map(line => JSON.parse(line));
+
+    return NextResponse.json({
+      total: signups.length,
+      signups
+    });
+  } catch (error) {
+    return NextResponse.json({ total: 0, signups: [] });
   }
 }

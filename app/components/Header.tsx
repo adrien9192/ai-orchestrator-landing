@@ -34,10 +34,11 @@ export default function Header() {
   }, [lastScrollY]);
 
   const navLinks = [
-    { href: '#produit', label: 'Produit' },
+    { href: '/about', label: 'À propos' },
+    { href: '/faq', label: 'FAQ' },
+    { href: '/vs', label: 'Comparaison' },
     { href: '/blog', label: 'Blog' },
-    { href: '#ressources', label: 'Ressources' },
-    { href: '#tarifs', label: 'Tarifs' },
+    { href: '/trust', label: 'Sécurité' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -73,7 +74,7 @@ export default function Header() {
             href="#signup"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-shadow"
           >
-            Essai gratuit
+            Commencer l'essai
           </Link>
         </div>
 
@@ -104,7 +105,7 @@ export default function Header() {
               className="block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium text-center"
               onClick={() => setIsOpen(false)}
             >
-              Essai gratuit
+              Commencer l'essai
             </Link>
           </div>
         </div>

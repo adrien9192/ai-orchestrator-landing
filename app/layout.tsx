@@ -5,6 +5,7 @@ import "./globals.css";
 import { allSchemas } from "@/lib/schema";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import LayoutClient from "./layout-client";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -71,11 +72,6 @@ export const metadata: Metadata = {
     icon: '/favicon.svg',
     apple: '/apple-touch-icon.png'
   },
-  
-  // Verification (add when available)
-  // verification: {
-  //   google: "YOUR_GOOGLE_SEARCH_CONSOLE_CODE"
-  // }
 };
 
 export default function RootLayout({
@@ -125,6 +121,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <LayoutClient />
       </body>
     </html>
   );

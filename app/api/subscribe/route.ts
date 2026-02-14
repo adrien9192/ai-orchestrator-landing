@@ -8,7 +8,7 @@ const SIGNUPS_FILE = join(SIGNUPS_DIR, "emails.jsonl");
 
 export async function POST(request: Request) {
   try {
-    const { email } = await request.json();
+    const { email, name, source, tag } = await request.json();
 
     if (!email || !email.includes("@")) {
       return NextResponse.json(
@@ -24,8 +24,10 @@ export async function POST(request: Request) {
 
     const signup = {
       email,
+      name: name || "",
       timestamp: new Date().toISOString(),
-      source: "landing-page"
+      source: source || "landing-page",
+      tag: tag || null,
     };
 
     await appendFile(
@@ -33,19 +35,44 @@ export async function POST(request: Request) {
       JSON.stringify(signup) + "\n"
     );
 
-    console.log("Email stored:", email);
+    console.log("Email stored:", email, "| Source:", source, "| Tag:", tag);
 
-    // Also try ConvertKit but don't fail if it doesn't work
+    // Try ConvertKit integration
     try {
       const formId = process.env.CONVERTKIT_FORM_ID;
       const apiKey = process.env.CONVERTKIT_API_KEY;
       
       if (formId && apiKey) {
-        await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ api_key: apiKey, email }),
-        });
+        const ckPayload: any = {
+          api_key: apiKey,
+          email,
+        };
+
+        // Add name if provided
+        if (name) {
+          ckPayload.first_name = name;
+        }
+
+        // Add tag if provided (for lead magnet tracking)
+        if (tag) {
+          ckPayload.tags = [tag];
+        }
+
+        const response = await fetch(
+          `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(ckPayload),
+          }
+        );
+
+        if (response.ok) {
+          console.log("ConvertKit sync successful");
+        } else {
+          const errorData = await response.json();
+          console.log("ConvertKit sync failed:", errorData);
+        }
       }
     } catch (ckError) {
       console.log("ConvertKit sync failed (non-critical):", ckError);
@@ -75,9 +102,24 @@ export async function GET() {
       .filter(Boolean)
       .map(line => JSON.parse(line));
 
+    // Group by source/tag
+    const bySource: Record<string, number> = {};
+    const byTag: Record<string, number> = {};
+
+    signups.forEach((signup: any) => {
+      bySource[signup.source] = (bySource[signup.source] || 0) + 1;
+      if (signup.tag) {
+        byTag[signup.tag] = (byTag[signup.tag] || 0) + 1;
+      }
+    });
+
     return NextResponse.json({
       total: signups.length,
       signups,
+      stats: {
+        bySource,
+        byTag,
+      },
       convertkit_form_id: process.env.CONVERTKIT_FORM_ID || "9084768"
     });
   } catch (error) {

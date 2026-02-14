@@ -134,9 +134,9 @@ export default function NewLanding() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            Copie mes 5 agents.
+            Je construis 5 agents IA.
             <br />
-            <span className="text-yellow-400">Ils bossent 24/7.</span>
+            <span className="text-yellow-400">Tu apprends avec moi.</span>
           </motion.h1>
 
           {/* Subhead (20 words max) */}
@@ -146,9 +146,9 @@ export default function NewLanding() {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-gray-400 mb-8 max-w-xl mx-auto"
           >
-            <span className="text-white font-semibold">20h/semaine saved.</span> Ship en 48h, pas 6 mois.
+            Code sur GitHub. Discord privé. Pas de bullshit expert.
             <br />
-            Code GitHub + Discord + je les améliore en public.
+            <span className="text-white">Tous les échecs inclus.</span>
           </motion.p>
 
           {/* CTA Form */}
@@ -273,83 +273,6 @@ export default function NewLanding() {
             <p className="text-xl font-bold mb-2">Moi aussi.</p>
             <p className="text-gray-400">
               C'est pour ça que je construis des agents qui font ça pendant que je dors.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* RÉSULTATS CONCRETS */}
-      <section className="relative px-4 py-16 md:py-20 bg-gradient-to-b from-transparent to-yellow-400/5">
-        <div className="max-w-2xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-4 text-center"
-          >
-            Résultat concret:
-            <br />
-            <span className="text-yellow-400">20h/semaine saved</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center text-gray-400 mb-12 text-lg"
-          >
-            Pendant que toi tu dors ou bosses sur ce qui compte vraiment.
-          </motion.p>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/5 border border-yellow-400/30 rounded-xl p-6"
-            >
-              <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-3">Ship en 48h</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Clone mes repos. Configure 3 variables d'env. Run. Tes agents bossent.
-                <br /><br />
-                <span className="text-red-400 line-through">Pas 6 mois à trial-error sur YouTube.</span>
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white/5 border border-yellow-400/30 rounded-xl p-6"
-            >
-              <div className="text-4xl mb-4">🌙</div>
-              <h3 className="text-xl font-bold mb-3">Bossent 24/7</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Theo cherche des insights à 3h du mat'. Kelly génère du contenu pendant ton petit-déj.
-                <br /><br />
-                <span className="text-green-400">Tu wake up avec 10 tasks done.</span>
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/30 rounded-xl p-6"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-center">Calcul simple:</h3>
-            <div className="space-y-2 text-gray-300">
-              <p>• <strong>20h/semaine</strong> = 80h/mois saved</p>
-              <p>• <strong>Ton taux horaire:</strong> €50/h (conservative)</p>
-              <p>• <strong>Valeur saved:</strong> €4,000/mois</p>
-              <p className="pt-3 border-t border-yellow-400/20">
-                • <strong className="text-yellow-400">Prix de l'accès:</strong> €49 (one-time)
-              </p>
-            </div>
-            <p className="mt-4 text-center text-sm text-gray-500">
-              ROI payé en <span className="text-yellow-400 font-bold">~9 heures</span> saved.
             </p>
           </motion.div>
         </div>

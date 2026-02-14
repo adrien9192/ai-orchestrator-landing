@@ -258,9 +258,9 @@ export default function FormationLanding() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            {ACTIVE_VARIANT.headline}
+            The data platform for LLM teams.
             <br />
-            <span className="text-yellow-400">{ACTIVE_VARIANT.subheadline}</span>
+            <span className="text-yellow-400">Train custom AI models on your data. Without the DevOps nightmare.</span>
           </motion.h1>
 
           {/* VARIANT A SUBHEADING (Concrete Benefit) */}
@@ -297,9 +297,9 @@ export default function FormationLanding() {
               type="submit"
               disabled={loading}
               className="px-8 py-4 min-h-[48px] bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-              aria-label={ACTIVE_VARIANT.cta}
+              aria-label="Start Free Trial"
             >
-              {loading ? "..." : ACTIVE_VARIANT.cta}
+              {loading ? "..." : "Start Free Trial (No Credit Card)"}
             </button>
           </motion.form>
 

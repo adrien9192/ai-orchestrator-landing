@@ -34,7 +34,9 @@ const VARIANT_C = {
 // ============================================================================
 // SELECT ACTIVE VARIANT (Change here to test)
 // ============================================================================
-const ACTIVE_VARIANT = VARIANT_A; // Switch to VARIANT_B or VARIANT_C for A/B testing
+const ACTIVE_VARIANT = VARIANT_A; // Data Platform = Strongest (Theo recommended)
+// Switch to VARIANT_B or VARIANT_C for A/B testing
+// Force rebuild timestamp: 2026-02-14 16:56 UTC
 
 // Real-time agent status
 const AGENT_STATUS = [

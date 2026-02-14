@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Phase 1 #4 - Mobile font size 16px minimum */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth; /* Smooth scroll for anchor links */
+}
+
 body {
   @apply bg-dark text-gray-100;
 }
@@ -18,4 +24,22 @@ input:focus-visible {
   outline: 3px solid #FBBF24;
   outline-offset: 2px;
   box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.3);
+}
+
+/* Active state for buttons (tactile feedback) */
+button:active,
+a:active {
+  transform: scale(0.98);
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

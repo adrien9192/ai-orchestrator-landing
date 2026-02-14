@@ -258,9 +258,9 @@ export default function FormationLanding() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-6"
           >
-            The data platform for LLM teams.
+            Orchestre tes agents sans DevOps.
             <br />
-            <span className="text-yellow-400">Train custom AI models on your data. Without the DevOps nightmare.</span>
+            <span className="text-yellow-400">20h/semaine en moins. Coûts visibles. Agents fiables.</span>
           </motion.h1>
 
           {/* VARIANT A SUBHEADING (Concrete Benefit) */}
@@ -270,9 +270,9 @@ export default function FormationLanding() {
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl"
           >
-            Data prep is <span className="text-white font-semibold">40% of every ML project</span>. Formation cuts that to zero.
+            Ton agent perd le contexte en production? <span className="text-white font-semibold">20h/semaine disparaissent</span> dans la prép data et le debug. Les coûts spiralent à €200/mois sans que tu saches pourquoi.
             <br />
-            <span className="text-gray-500 text-base">Upload CSV → validate → version → train → deploy. All automated. No Python required.</span>
+            <span className="text-gray-500 text-base">Formation: contexte stable, visibilité totale, orchestration zero-DevOps. Upload CSV → train → deploy. Pas de Python, résultats en 48h.</span>
           </motion.p>
 
           {/* CTA FORM (Primary Conversion Point) */}
@@ -297,9 +297,9 @@ export default function FormationLanding() {
               type="submit"
               disabled={loading}
               className="px-8 py-4 min-h-[48px] bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
-              aria-label="Start Free Trial"
+              aria-label="Essai gratuit"
             >
-              {loading ? "..." : "Start Free Trial (No Credit Card)"}
+              {loading ? "..." : "Essai gratuit, 48h accès"}
             </button>
           </motion.form>
 
@@ -898,3 +898,10 @@ export default function FormationLanding() {
   );
 }
 // Cache bust: 1771085922
+
+// 🇫🇷 FORMATION COPY — French messaging (Feb 14, 2026)
+export const FORMATION_FR = {
+  HEADLINE: "Orchestre tes agents sans DevOps.",
+  SUBHEADING: "Ton agent perd le contexte en production? 20h/semaine disparaissent dans la prép data et le debug. Les coûts spiralent à €200/mois sans que tu saches pourquoi.",
+  CTA: "Essai gratuit, 48h accès",
+};

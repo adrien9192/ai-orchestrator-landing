@@ -5,6 +5,13 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { message: 'Erreur serveur: configuration manquante' },
+        { status: 500 }
+      );
+    }
+
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await request.json();
     const { name, email, company_type, message } = body;

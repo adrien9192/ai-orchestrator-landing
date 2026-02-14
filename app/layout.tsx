@@ -3,14 +3,16 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { allSchemas } from "@/lib/schema";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ai-orchestrator-landing.vercel.app'),
   
-  title: "Formation AI Orchestrator | Orchestration Multi-LLM Production (€299)",
-  description: "Templates production-ready testés 6 mois. 5 agents IA qui tournent 24/7 pour €73/mois. De zéro à production en 7-10 jours. Formation pratique FR.",
+  title: "Formation AI | Automatisez vos processus métier avec l'IA",
+  description: "Orchestration multi-LLM production-ready. Automatisez vos processus métier avec nos agents IA testés. Formation pratique, templates production-ready. Essai gratuit.",
   
   keywords: [
     "ai agents",
@@ -34,16 +36,16 @@ export const metadata: Metadata = {
   
   // Open Graph (Facebook, LinkedIn)
   openGraph: {
-    title: "Formation AI Orchestrator | Templates Production-Ready (€299)",
-    description: "5 agents IA qui tournent 24/7 depuis 6 mois. Templates complets. Formation pratique FR. Early Bird: 12/90 places restantes.",
+    title: "Formation AI | Automatisez vos processus métier",
+    description: "Agents IA testés en production. Templates production-ready. Formation pratique. Essai gratuit.",
     url: "https://ai-orchestrator-landing.vercel.app",
-    siteName: "Formation AI Orchestrator",
+    siteName: "Formation AI",
     images: [
       {
-        url: "/og-image.png", // TODO: Create 1200×630px image
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Formation AI Orchestrator - Orchestration Multi-LLM Production - 5 agents testés 6 mois"
+        alt: "Formation AI - Automatisez vos processus métier avec l'IA"
       }
     ],
     locale: "fr_FR",
@@ -53,8 +55,8 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "Formation AI Orchestrator | Templates Production-Ready",
-    description: "5 agents IA testés 6 mois. Du chat au système en prod 24/7. €299 Early Bird (12/90 places).",
+    title: "Formation AI | Automatisez vos processus",
+    description: "Agents IA production-ready. Formation pratique. Essai gratuit.",
     images: ["/og-image.png"],
     creator: "@Pillaw_AI"
   },
@@ -117,7 +119,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        <main>
+          {children}
+        </main>
+        <Footer />
+      </body>
     </html>
   );
 }

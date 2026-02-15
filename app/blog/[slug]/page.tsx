@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Header } from '@/app/components/Header';
+import Header from '@/app/components/Header';
 
 const articles: Record<string, { title: string; date: string; content: string[] }> = {
   'article-1': {

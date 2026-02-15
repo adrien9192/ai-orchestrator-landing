@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import VideoTestimonial from "./components/VideoTestimonial";
 
 // ============================================================================
 // FORMATION AI ORCHESTRATOR — Landing Page Française (Enhanced)
@@ -232,6 +233,11 @@ export default function FormationPageFR() {
           <p className="text-gray-600">
             <strong className="text-gray-900">4.9/5</strong> · 47 avis vérifiés
           </p>
+        </div>
+
+        {/* Video Testimonial */}
+        <div className="mb-12">
+          <VideoTestimonial />
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 mb-8">

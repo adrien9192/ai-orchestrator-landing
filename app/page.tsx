@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import VideoTestimonial from "./components/VideoTestimonial";
 
 // ============================================================================
 // FORMATION AI ORCHESTRATOR — Landing Page Française (Enhanced)
@@ -146,17 +147,8 @@ export default function FormationPageFR() {
             Découvrez comment Sophie a récupéré 8h/semaine et augmenté son CA de 30% en automatisant son e-commerce.
           </p>
           
-          {/* Video Placeholder */}
-          <div className="aspect-video bg-gray-700 rounded-lg flex items-center justify-center border-2 border-gray-600">
-            <div className="text-center">
-              <div className="text-6xl mb-4">▶️</div>
-              <p className="text-gray-400 text-sm">
-                Vidéo témoignage à venir
-                <br />
-                (Loom / YouTube embed)
-              </p>
-            </div>
-          </div>
+          {/* Video Component */}
+          <VideoTestimonial />
         </motion.div>
       </section>
 

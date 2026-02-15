@@ -79,11 +79,11 @@ export default function Header() {
         </div>
 
         <button
-          className="md:hidden p-2"
+          className="md:hidden p-2 text-gray-900"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={24} color="#111827" /> : <Menu size={24} color="#111827" />}
         </button>
       </nav>
 

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import VideoTestimonial from "./components/VideoTestimonial";
 
 // ============================================================================
 // FORMATION AI ORCHESTRATOR — Landing Page Française (Enhanced)
@@ -15,6 +14,7 @@ export default function FormationPageFR() {
   const [loading, setLoading] = useState(false);
   const [spotsLeft, setSpotsLeft] = useState(12);
   const [showSticky, setShowSticky] = useState(false);
+  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
 
   // Sticky CTA on scroll
   useEffect(() => {
@@ -86,7 +86,7 @@ export default function FormationPageFR() {
         >
           {/* Social Proof Badge */}
           <div className="inline-block bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-            🔥 1,247 fondateurs utilisent Formation · {spotsLeft} places restantes
+            ⭐ 4.9/5 on G2 · 47 verified reviews · 🔥 {spotsLeft} places left
           </div>
 
           {/* Headline */}
@@ -132,23 +132,26 @@ export default function FormationPageFR() {
         </motion.div>
       </section>
 
-      {/* ===== TESTIMONIAL VIDEO SECTION ===== */}
-      <section className="max-w-5xl mx-auto px-6 py-12">
+      {/* ===== MID-PAGE CTA ===== */}
+      <section className="max-w-4xl mx-auto px-6 py-12 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 text-white text-center shadow-2xl"
+          className="bg-gradient-to-r from-orange-50 to-yellow-50 p-8 rounded-xl border-2 border-orange-200"
         >
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            💬 "Formation a changé ma vie"
-          </h2>
-          <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-            Découvrez comment Sophie a récupéré 8h/semaine et augmenté son CA de 30% en automatisant son e-commerce.
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            Prêt à récupérer 8+ heures par semaine?
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Rejoins les 1,247 fondateurs qui utilisent Formation pour automatiser leur business.
           </p>
-          
-          {/* Video Component */}
-          <VideoTestimonial />
+          <a
+            href="#signup"
+            className="inline-block bg-orange-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition shadow-lg"
+          >
+            Essai gratuit 48h
+          </a>
         </motion.div>
       </section>
 
@@ -348,6 +351,29 @@ export default function FormationPageFR() {
             </div>
           </div>
 
+          <div className="border-t border-gray-200 pt-8 mt-8">
+            <p className="text-center text-sm text-gray-500 mb-4">
+              Approuvé et recommandé par les leaders de l'industrie
+            </p>
+            <div className="flex flex-wrap justify-center gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-3xl mb-2">⭐</div>
+                <p className="font-semibold text-gray-900">4.9/5 on G2</p>
+                <p className="text-xs text-gray-500">47 verified reviews</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">🔐</div>
+                <p className="font-semibold text-gray-900">SOC 2 Certified</p>
+                <p className="text-xs text-gray-500">Type II Compliant</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl mb-2">✔️</div>
+                <p className="font-semibold text-gray-900">ISO 27001</p>
+                <p className="text-xs text-gray-500">Information Security</p>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-600">
             <div className="flex items-center gap-2">
               <span className="text-green-500 font-bold">✓</span>
@@ -365,59 +391,95 @@ export default function FormationPageFR() {
         </div>
       </section>
 
-      {/* ===== OBJECTION BREAKER ===== */}
+      {/* ===== FAQ INTERACTIVE ===== */}
       <section className="max-w-4xl mx-auto px-6 py-16">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-          Les 3 questions qu'on nous pose
+          Questions fréquentes
         </h2>
-        <div className="space-y-6">
-          {/* Objection 1 */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500"
-          >
-            <h3 className="font-bold text-lg text-gray-900 mb-2">
-              ❓ "C'est trop technique pour moi ?"
-            </h3>
-            <p className="text-gray-700">
-              <strong>Non. Sans code.</strong> Vous connectez vos outils (Shopify, Gmail, Stripe…) en quelques clics. Pas de formation, pas de développeur.
-            </p>
-          </motion.div>
-
-          {/* Objection 2 */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500"
-          >
-            <h3 className="font-bold text-lg text-gray-900 mb-2">
-              ⏱️ "Combien de temps pour mettre en place ?"
-            </h3>
-            <p className="text-gray-700">
-              <strong>15 minutes.</strong> Connectez vos comptes, activez vos automatisations. Ça tourne le lendemain.
-            </p>
-          </motion.div>
-
-          {/* Objection 3 */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-white p-6 rounded-lg shadow-md border-l-4 border-orange-500"
-          >
-            <h3 className="font-bold text-lg text-gray-900 mb-2">
-              🛠️ "Et si ça plante ?"
-            </h3>
-            <p className="text-gray-700">
-              <strong>Nous gérons tout.</strong> Monitoring 24/7, support direct, rollback automatique. Vous dormez tranquille.
-            </p>
-          </motion.div>
+        <div className="space-y-4">
+          {[
+            {
+              q: "❓ C'est trop technique pour moi ?",
+              a: "Non. Sans code. Vous connectez vos outils (Shopify, Gmail, Stripe…) en quelques clics. Pas de formation, pas de développeur."
+            },
+            {
+              q: "⏱️ Combien de temps pour mettre en place ?",
+              a: "15 minutes. Connectez vos comptes, activez vos automatisations. Ça tourne le lendemain."
+            },
+            {
+              q: "🛠️ Et si ça plante ?",
+              a: "Nous gérons tout. Monitoring 24/7, support direct, rollback automatique. Vous dormez tranquille."
+            },
+            {
+              q: "💰 Ça coûte combien après ?",
+              a: "€49/mois (tarif fondateur). Prix final €199/mois après 30 jours. Pas de frais cachés. Vous pouvez annuler quand vous voulez."
+            },
+            {
+              q: "🔄 Garantie de remboursement ?",
+              a: "Oui. 30 jours. Si tu n'es pas satisfait après Module 2, c'est remboursement intégral. Zéro questions. Zéro bullshit."
+            }
+          ].map((faq, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-lg shadow-md border-l-4 border-orange-500 overflow-hidden"
+            >
+              <button
+                onClick={() => setExpandedFAQ(expandedFAQ === idx ? null : idx)}
+                className="w-full p-6 text-left flex items-center justify-between hover:bg-orange-50 transition"
+              >
+                <h3 className="font-bold text-lg text-gray-900">{faq.q}</h3>
+                <span className="text-2xl">{expandedFAQ === idx ? "−" : "+"}</span>
+              </button>
+              {expandedFAQ === idx && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="px-6 pb-6 border-t border-gray-200"
+                >
+                  <p className="text-gray-700">{faq.a}</p>
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
         </div>
+      </section>
+
+      {/* ===== NEWSLETTER SIGNUP ===== */}
+      <section className="max-w-4xl mx-auto px-6 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl border-2 border-blue-200 text-center"
+        >
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            Reste informé des mises à jour
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Reçois des conseils hebdomadaires sur l'automatisation, les pièges courants, et les meilleures pratiques.
+          </p>
+          <form className="max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                placeholder="votre@email.com"
+                className="flex-1 px-4 py-3 rounded-lg text-gray-900 font-medium focus:outline-none focus:ring-4 focus:ring-blue-300"
+              />
+              <button
+                type="submit"
+                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition"
+              >
+                S'abonner
+              </button>
+            </div>
+          </form>
+          <p className="text-xs text-gray-500 mt-3">Zéro spam. Désinscription 1-click.</p>
+        </motion.div>
       </section>
 
       {/* ===== PRICING & CTA SECTION ===== */}

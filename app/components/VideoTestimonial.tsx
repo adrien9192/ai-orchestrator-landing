@@ -194,7 +194,7 @@ export default function VideoTestimonial() {
             >
               <p className="text-gray-100 text-sm mb-2">Heures économisées/semaine</p>
               <motion.p
-                initial={{ textContent: '0' }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: scene5 > 0.4 ? 1 : 0.3 }}
                 className="text-5xl font-bold"
               >

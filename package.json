@@ -8,11 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@remotion/player": "^4.0.243",
     "framer-motion": "^12.34.0",
     "lucide-react": "^0.564.0",
     "next": "14.2.0",
     "react": "^18",
     "react-dom": "^18",
+    "remotion": "^4.0.243",
     "resend": "^6.9.2",
     "sharp": "^0.34.5"
   },
